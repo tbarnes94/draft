@@ -1,0 +1,57 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8srestrictedimagepulls
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRestrictedImagePulls
+      validation:
+        openAPIV3Schema:
+          type: object
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srestrictedimagepulls
+        import future.keywords
+        
+        has_key(object, key) {
+          _ = object[key]
+        }
+
+        get_object_keys(obj) = list {
+          keyVals := [s | s = concat("", [key]); val = obj[key]]
+          keysStr := concat(",", keyVals)
+          list := split(keysStr, ",")
+        }
+
+        get_object_values(obj) = list {
+          keyVals := [s | s = concat("",[val]); val = obj[key]]
+          keysStr := concat(",", keyVals)
+          list := keysStr
+        }
+
+        violation[{"msg": msg}] {
+          not has_key(input.review.object.spec, "imagePullSecrets")
+          providedNamespace := input.review.namespace
+          providedPodName := input.review.object.metadata.name
+          msg := sprintf("%s in %s does not have imagePullSecrets. Unauthenticated image pulls are not recommended.", [providedPodName, providedNamespace])
+        }
+
+        violation[{"msg": msg}] {
+          providedNamespace := input.review.namespace
+          providedPodName := input.review.object.metadata.name
+
+          has_key(input.review.object.spec, "imagePullSecrets")
+          has_key(data.inventory.namespace[providedNamespace].v1, "Secret")
+
+          allSecretsFromNamespaceSet := {x | x = get_object_keys(data.inventory.namespace[providedNamespace].v1.Secret)[_]}
+          podSecretsSet := {x | x = get_object_values(input.review.object.spec.imagePullSecrets[_])}
+
+          podImagePullAuth := podSecretsSet[val]
+          not allSecretsFromNamespaceSet[podImagePullAuth]
+
+          msg := sprintf("%s secret %s is not registered in %s", [providedPodName, podImagePullAuth, providedNamespace])
+        }
+     

@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "policyType": "Custom",
+    "mode": "Microsoft.Kubernetes.Data",
+    "displayName": "[AKS Guardrails] Containers Should Have Limits",
+    "description": "Containers should have resource limits.",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": [
+          "Microsoft.ContainerService/managedClusters"
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "templateInfo": {
+            "sourceType": "Base64Encoded",
+            "content": "YXBpVmVyc2lvbjogdGVtcGxhdGVzLmdhdGVrZWVwZXIuc2gvdjEKa2luZDogQ29uc3RyYWludFRlbXBsYXRlCm1ldGFkYXRhOgogIG5hbWU6IGs4c2NvbnRhaW5lcmxpbWl0cwpzcGVjOgogIGNyZDoKICAgIHNwZWM6CiAgICAgIG5hbWVzOgogICAgICAgIGtpbmQ6IEs4c0NvbnRhaW5lckxpbWl0cwogICAgICB2YWxpZGF0aW9uOgogICAgICAgICMgU2NoZW1hIGZvciB0aGUgYHBhcmFtZXRlcnNgIGZpZWxkCiAgICAgICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBjcHU6CiAgICAgICAgICAgICAgdHlwZTogc3RyaW5nCiAgICAgICAgICAgIG1lbW9yeToKICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICB0YXJnZXRzOgogICAgLSB0YXJnZXQ6IGFkbWlzc2lvbi5rOHMuZ2F0ZWtlZXBlci5zaAogICAgICByZWdvOiB8CiAgICAgICAgcGFja2FnZSBrOHNjb250YWluZXJsaW1pdHMKCiAgICAgICAgbWlzc2luZyhvYmosIGZpZWxkKSA9IHRydWUgewogICAgICAgICAgbm90IG9ialtmaWVsZF0KICAgICAgICB9CgogICAgICAgIG1pc3Npbmcob2JqLCBmaWVsZCkgPSB0cnVlIHsKICAgICAgICAgIG9ialtmaWVsZF0gPT0gIiIKICAgICAgICB9CgogICAgICAgIGNhbm9uaWZ5X2NwdShvcmlnKSA9IG5ldyB7CiAgICAgICAgICBpc19udW1iZXIob3JpZykKICAgICAgICAgIG5ldyA6PSBvcmlnICogMTAwMAogICAgICAgIH0KCiAgICAgICAgY2Fub25pZnlfY3B1KG9yaWcpID0gbmV3IHsKICAgICAgICAgIG5vdCBpc19udW1iZXIob3JpZykKICAgICAgICAgIGVuZHN3aXRoKG9yaWcsICJtIikKICAgICAgICAgIG5ldyA6PSB0b19udW1iZXIocmVwbGFjZShvcmlnLCAibSIsICIiKSkKICAgICAgICB9CgogICAgICAgIGNhbm9uaWZ5X2NwdShvcmlnKSA9IG5ldyB7CiAgICAgICAgICBub3QgaXNfbnVtYmVyKG9yaWcpCiAgICAgICAgICBub3QgZW5kc3dpdGgob3JpZywgIm0iKQogICAgICAgICAgcmVfbWF0Y2goIl5bMC05XSskIiwgb3JpZykKICAgICAgICAgIG5ldyA6PSB0b19udW1iZXIob3JpZykgKiAxMDAwCiAgICAgICAgfQoKICAgICAgICAjIDEwICoqIDIxCiAgICAgICAgbWVtX211bHRpcGxlKCJFIikgPSAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAgKiogMTgKICAgICAgICBtZW1fbXVsdGlwbGUoIlAiKSA9IDEwMDAwMDAwMDAwMDAwMDAwMDAgeyB0cnVlIH0KCiAgICAgICAgIyAxMCAqKiAxNQogICAgICAgIG1lbV9tdWx0aXBsZSgiVCIpID0gMTAwMDAwMDAwMDAwMDAwMCB7IHRydWUgfQoKICAgICAgICAjIDEwICoqIDEyCiAgICAgICAgbWVtX211bHRpcGxlKCJHIikgPSAxMDAwMDAwMDAwMDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAgKiogOQogICAgICAgIG1lbV9tdWx0aXBsZSgiTSIpID0gMTAwMDAwMDAwMCB7IHRydWUgfQoKICAgICAgICAjIDEwICoqIDYKICAgICAgICBtZW1fbXVsdGlwbGUoImsiKSA9IDEwMDAwMDAgeyB0cnVlIH0KCiAgICAgICAgIyAxMCAqKiAzCiAgICAgICAgbWVtX211bHRpcGxlKCIiKSA9IDEwMDAgeyB0cnVlIH0KCiAgICAgICAgIyBLdWJlcm5ldGVzIGFjY2VwdHMgbWlsbGlieXRlIHByZWNpc2lvbiB3aGVuIGl0IHByb2JhYmx5IHNob3VsZG4ndC4KICAgICAgICAjIGh0dHBzOi8vZ2l0aHViLmNvbS9rdWJlcm5ldGVzL2t1YmVybmV0ZXMvaXNzdWVzLzI4NzQxCiAgICAgICAgIyAxMCAqKiAwCiAgICAgICAgbWVtX211bHRpcGxlKCJtIikgPSAxIHsgdHJ1ZSB9CgogICAgICAgICMgMTAwMCAqIDIgKiogMTAKICAgICAgICBtZW1fbXVsdGlwbGUoIktpIikgPSAxMDI0MDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAwMCAqIDIgKiogMjAKICAgICAgICBtZW1fbXVsdGlwbGUoIk1pIikgPSAxMDQ4NTc2MDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAwMCAqIDIgKiogMzAKICAgICAgICBtZW1fbXVsdGlwbGUoIkdpIikgPSAxMDczNzQxODI0MDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAwMCAqIDIgKiogNDAKICAgICAgICBtZW1fbXVsdGlwbGUoIlRpIikgPSAxMDk5NTExNjI3Nzc2MDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAwMCAqIDIgKiogNTAKICAgICAgICBtZW1fbXVsdGlwbGUoIlBpIikgPSAxMTI1ODk5OTA2ODQyNjI0MDAwIHsgdHJ1ZSB9CgogICAgICAgICMgMTAwMCAqIDIgKiogNjAKICAgICAgICBtZW1fbXVsdGlwbGUoIkVpIikgPSAxMTUyOTIxNTA0NjA2ODQ2OTc2MDAwIHsgdHJ1ZSB9CgogICAgICAgIGdldF9zdWZmaXgobWVtKSA9IHN1ZmZpeCB7CiAgICAgICAgICBub3QgaXNfc3RyaW5nKG1lbSkKICAgICAgICAgIHN1ZmZpeCA6PSAiIgogICAgICAgIH0KCiAgICAgICAgZ2V0X3N1ZmZpeChtZW0pID0gc3VmZml4IHsKICAgICAgICAgIGlzX3N0cmluZyhtZW0pCiAgICAgICAgICBjb3VudChtZW0pID4gMAogICAgICAgICAgc3VmZml4IDo9IHN1YnN0cmluZyhtZW0sIGNvdW50KG1lbSkgLSAxLCAtMSkKICAgICAgICAgIG1lbV9tdWx0aXBsZShzdWZmaXgpCiAgICAgICAgfQoKICAgICAgICBnZXRfc3VmZml4KG1lbSkgPSBzdWZmaXggewogICAgICAgICAgaXNfc3RyaW5nKG1lbSkKICAgICAgICAgIGNvdW50KG1lbSkgPiAxCiAgICAgICAgICBzdWZmaXggOj0gc3Vic3RyaW5nKG1lbSwgY291bnQobWVtKSAtIDIsIC0xKQogICAgICAgICAgbWVtX211bHRpcGxlKHN1ZmZpeCkKICAgICAgICB9CgogICAgICAgIGdldF9zdWZmaXgobWVtKSA9IHN1ZmZpeCB7CiAgICAgICAgICBpc19zdHJpbmcobWVtKQogICAgICAgICAgY291bnQobWVtKSA+IDEKICAgICAgICAgIG5vdCBtZW1fbXVsdGlwbGUoc3Vic3RyaW5nKG1lbSwgY291bnQobWVtKSAtIDEsIC0xKSkKICAgICAgICAgIG5vdCBtZW1fbXVsdGlwbGUoc3Vic3RyaW5nKG1lbSwgY291bnQobWVtKSAtIDIsIC0xKSkKICAgICAgICAgIHN1ZmZpeCA6PSAiIgogICAgICAgIH0KCiAgICAgICAgZ2V0X3N1ZmZpeChtZW0pID0gc3VmZml4IHsKICAgICAgICAgIGlzX3N0cmluZyhtZW0pCiAgICAgICAgICBjb3VudChtZW0pID09IDEKICAgICAgICAgIG5vdCBtZW1fbXVsdGlwbGUoc3Vic3RyaW5nKG1lbSwgY291bnQobWVtKSAtIDEsIC0xKSkKICAgICAgICAgIHN1ZmZpeCA6PSAiIgogICAgICAgIH0KCiAgICAgICAgZ2V0X3N1ZmZpeChtZW0pID0gc3VmZml4IHsKICAgICAgICAgIGlzX3N0cmluZyhtZW0pCiAgICAgICAgICBjb3VudChtZW0pID09IDAKICAgICAgICAgIHN1ZmZpeCA6PSAiIgogICAgICAgIH0KCiAgICAgICAgY2Fub25pZnlfbWVtKG9yaWcpID0gbmV3IHsKICAgICAgICAgIGlzX251bWJlcihvcmlnKQogICAgICAgICAgbmV3IDo9IG9yaWcgKiAxMDAwCiAgICAgICAgfQoKICAgICAgICBjYW5vbmlmeV9tZW0ob3JpZykgPSBuZXcgewogICAgICAgICAgbm90IGlzX251bWJlcihvcmlnKQogICAgICAgICAgc3VmZml4IDo9IGdldF9zdWZmaXgob3JpZykKICAgICAgICAgIHJhdyA6PSByZXBsYWNlKG9yaWcsIHN1ZmZpeCwgIiIpCiAgICAgICAgICByZV9tYXRjaCgiXlswLTldKyQiLCByYXcpCiAgICAgICAgICBuZXcgOj0gdG9fbnVtYmVyKHJhdykgKiBtZW1fbXVsdGlwbGUoc3VmZml4KQogICAgICAgIH0KCiAgICAgICAgdmlvbGF0aW9uW3sibXNnIjogbXNnfV0gewogICAgICAgICAgZ2VuZXJhbF92aW9sYXRpb25beyJtc2ciOiBtc2csICJmaWVsZCI6ICJjb250YWluZXJzIn1dCiAgICAgICAgfQoKICAgICAgICB2aW9sYXRpb25beyJtc2ciOiBtc2d9XSB7CiAgICAgICAgICBnZW5lcmFsX3Zpb2xhdGlvblt7Im1zZyI6IG1zZywgImZpZWxkIjogImluaXRDb250YWluZXJzIn1dCiAgICAgICAgfQoKICAgICAgICBnZW5lcmFsX3Zpb2xhdGlvblt7Im1zZyI6IG1zZywgImZpZWxkIjogZmllbGR9XSB7CiAgICAgICAgICBjb250YWluZXIgOj0gaW5wdXQucmV2aWV3Lm9iamVjdC5zcGVjW2ZpZWxkXVtfXQogICAgICAgICAgY3B1X29yaWcgOj0gY29udGFpbmVyLnJlc291cmNlcy5saW1pdHMuY3B1CiAgICAgICAgICBub3QgY2Fub25pZnlfY3B1KGNwdV9vcmlnKQogICAgICAgICAgbXNnIDo9IHNwcmludGYoImNvbnRhaW5lciA8JXM+IGNwdSBsaW1pdCA8JXM+IGNvdWxkIG5vdCBiZSBwYXJzZWQiLCBbY29udGFpbmVyLm5hbWUsIGNwdV9vcmlnXSkKICAgICAgICB9CgogICAgICAgIGdlbmVyYWxfdmlvbGF0aW9uW3sibXNnIjogbXNnLCAiZmllbGQiOiBmaWVsZH1dIHsKICAgICAgICAgIGNvbnRhaW5lciA6PSBpbnB1dC5yZXZpZXcub2JqZWN0LnNwZWNbZmllbGRdW19dCiAgICAgICAgICBtZW1fb3JpZyA6PSBjb250YWluZXIucmVzb3VyY2VzLmxpbWl0cy5tZW1vcnkKICAgICAgICAgIG5vdCBjYW5vbmlmeV9tZW0obWVtX29yaWcpCiAgICAgICAgICBtc2cgOj0gc3ByaW50ZigiY29udGFpbmVyIDwlcz4gbWVtb3J5IGxpbWl0IDwlcz4gY291bGQgbm90IGJlIHBhcnNlZCIsIFtjb250YWluZXIubmFtZSwgbWVtX29yaWddKQogICAgICAgIH0KCiAgICAgICAgZ2VuZXJhbF92aW9sYXRpb25beyJtc2ciOiBtc2csICJmaWVsZCI6IGZpZWxkfV0gewogICAgICAgICAgY29udGFpbmVyIDo9IGlucHV0LnJldmlldy5vYmplY3Quc3BlY1tmaWVsZF1bX10KICAgICAgICAgIG1pc3NpbmcoY29udGFpbmVyLCJyZXNvdXJjZXMiKQogICAgICAgICAgbXNnIDo9IHNwcmludGYoImNvbnRhaW5lciA8JXM+IGhhcyBubyByZXNvdXJjZSBsaW1pdHMiLCBbY29udGFpbmVyLm5hbWVdKQogICAgICAgIH0KCiAgICAgICAgZ2VuZXJhbF92aW9sYXRpb25beyJtc2ciOiBtc2csICJmaWVsZCI6IGZpZWxkfV0gewogICAgICAgICAgY29udGFpbmVyIDo9IGlucHV0LnJldmlldy5vYmplY3Quc3BlY1tmaWVsZF1bX10KICAgICAgICAgIG5vdCBjb250YWluZXIucmVzb3VyY2VzLmxpbWl0cwogICAgICAgICAgbXNnIDo9IHNwcmludGYoImNvbnRhaW5lciA8JXM+IGhhcyBubyByZXNvdXJjZSBsaW1pdHMiLCBbY29udGFpbmVyLm5hbWVdKQogICAgICAgIH0KCiAgICAgICAgZ2VuZXJhbF92aW9sYXRpb25beyJtc2ciOiBtc2csICJmaWVsZCI6IGZpZWxkfV0gewogICAgICAgICAgY29udGFpbmVyIDo9IGlucHV0LnJldmlldy5vYmplY3Quc3BlY1tmaWVsZF1bX10KICAgICAgICAgIG1pc3NpbmcoY29udGFpbmVyLnJlc291cmNlcy5saW1pdHMsICJjcHUiKQogICAgICAgICAgbXNnIDo9IHNwcmludGYoImNvbnRhaW5lciA8JXM+IGhhcyBubyBjcHUgbGltaXQiLCBbY29udGFpbmVyLm5hbWVdKQogICAgICAgIH0KCiAgICAgICAgZ2VuZXJhbF92aW9sYXRpb25beyJtc2ciOiBtc2csICJmaWVsZCI6IGZpZWxkfV0gewogICAgICAgICAgY29udGFpbmVyIDo9IGlucHV0LnJldmlldy5vYmplY3Quc3BlY1tmaWVsZF1bX10KICAgICAgICAgIG1pc3NpbmcoY29udGFpbmVyLnJlc291cmNlcy5saW1pdHMsICJtZW1vcnkiKQogICAgICAgICAgbXNnIDo9IHNwcmludGYoImNvbnRhaW5lciA8JXM+IGhhcyBubyBtZW1vcnkgbGltaXQiLCBbY29udGFpbmVyLm5hbWVdKQogICAgICAgIH0KCiAgICAgICAgZ2VuZXJhbF92aW9sYXRpb25beyJtc2ciOiBtc2csICJmaWVsZCI6IGZpZWxkfV0gewogICAgICAgICAgY29udGFpbmVyIDo9IGlucHV0LnJldmlldy5vYmplY3Quc3BlY1tmaWVsZF1bX10KICAgICAgICAgIGNwdV9vcmlnIDo9IGNvbnRhaW5lci5yZXNvdXJjZXMubGltaXRzLmNwdQogICAgICAgICAgY3B1IDo9IGNhbm9uaWZ5X2NwdShjcHVfb3JpZykKICAgICAgICAgIG1heF9jcHVfb3JpZyA6PSBpbnB1dC5wYXJhbWV0ZXJzLmNwdQogICAgICAgICAgbWF4X2NwdSA6PSBjYW5vbmlmeV9jcHUobWF4X2NwdV9vcmlnKQogICAgICAgICAgY3B1ID4gbWF4X2NwdQogICAgICAgICAgbXNnIDo9IHNwcmludGYoImNvbnRhaW5lciA8JXM+IGNwdSBsaW1pdCA8JXM+IGlzIGhpZ2hlciB0aGFuIHRoZSBtYXhpbXVtIGFsbG93ZWQgb2YgPCVzPiIsIFtjb250YWluZXIubmFtZSwgY3B1X29yaWcsIG1heF9jcHVfb3JpZ10pCiAgICAgICAgfQoKICAgICAgICBnZW5lcmFsX3Zpb2xhdGlvblt7Im1zZyI6IG1zZywgImZpZWxkIjogZmllbGR9XSB7CiAgICAgICAgICBjb250YWluZXIgOj0gaW5wdXQucmV2aWV3Lm9iamVjdC5zcGVjW2ZpZWxkXVtfXQogICAgICAgICAgbWVtX29yaWcgOj0gY29udGFpbmVyLnJlc291cmNlcy5saW1pdHMubWVtb3J5CiAgICAgICAgICBtZW0gOj0gY2Fub25pZnlfbWVtKG1lbV9vcmlnKQogICAgICAgICAgbWF4X21lbV9vcmlnIDo9IGlucHV0LnBhcmFtZXRlcnMubWVtb3J5CiAgICAgICAgICBtYXhfbWVtIDo9IGNhbm9uaWZ5X21lbShtYXhfbWVtX29yaWcpCiAgICAgICAgICBtZW0gPiBtYXhfbWVtCiAgICAgICAgICBtc2cgOj0gc3ByaW50ZigiY29udGFpbmVyIDwlcz4gbWVtb3J5IGxpbWl0IDwlcz4gaXMgaGlnaGVyIHRoYW4gdGhlIG1heGltdW0gYWxsb3dlZCBvZiA8JXM+IiwgW2NvbnRhaW5lci5uYW1lLCBtZW1fb3JpZywgbWF4X21lbV9vcmlnXSkKICAgICAgICB9Cg=="
+          },
+          "apiGroups": [
+            ""
+          ],
+          "kinds": [
+            "Pod"
+          ],
+          "namespaces": "[parameters('namespaces')]",
+          "excludedNamespaces": "[parameters('excludedNamespaces')]",
+          "labelSelector": "[parameters('labelSelector')]",
+          "values": {
+            "cpu": "[parameters('cpu')]",
+            "memory": "[parameters('memory')]"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Effect",
+          "description": "'audit' allows a non-compliant resource to be created or updated, but flags it as non-compliant. 'deny' blocks the non-compliant resource creation or update. 'disabled' turns off the policy."
+        },
+        "allowedValues": [
+          "audit",
+          "deny",
+          "disabled"
+        ],
+        "defaultValue": "audit"
+      },
+      "excludedNamespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace exclusions",
+          "description": "List of Kubernetes namespaces to exclude from policy evaluation."
+        },
+        "defaultValue": [
+          "kube-system",
+          "gatekeeper-system",
+          "azure-arc"
+        ]
+      },
+      "namespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace inclusions",
+          "description": "List of Kubernetes namespaces to only include in policy evaluation. An empty list means the policy is applied to all resources in all namespaces."
+        },
+        "defaultValue": []
+      },
+      "labelSelector": {
+        "type": "Object",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Kubernetes label selector",
+          "description": "Label query to select Kubernetes resources for policy evaluation. An empty label selector matches all Kubernetes resources."
+        },
+        "defaultValue": {},
+        "schema": {
+          "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all resources.",
+          "type": "object",
+          "properties": {
+            "matchLabels": {
+              "description": "matchLabels is a map of {key,value} pairs.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "minProperties": 1
+            },
+            "matchExpressions": {
+              "description": "matchExpressions is a list of values, a key, and an operator.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "key is the label key that the selector applies to.",
+                    "type": "string"
+                  },
+                  "operator": {
+                    "description": "operator represents a key's relationship to a set of values.",
+                    "type": "string",
+                    "enum": [
+                      "In",
+                      "NotIn",
+                      "Exists",
+                      "DoesNotExist"
+                    ]
+                  },
+                  "values": {
+                    "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "operator"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "cpu": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] CPU Limits",
+          "description": "Limits on the CPU."
+        }
+      },
+      "memory": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Memory Limits",
+          "description": "Limits on memory."
+        }
+      }
+    }
+  }
+}

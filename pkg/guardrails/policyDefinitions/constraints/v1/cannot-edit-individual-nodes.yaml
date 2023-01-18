@@ -1,0 +1,13 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRestrictedNodeEdits
+metadata:
+  name: cannot-edit-individual-nodes
+spec:
+  enforcementAction: warn
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Node"]
+  parameters:
+    allowedUsers: ["nodeclient","system:serviceaccount:kube-system:aci-connector-linux","system:serviceaccount:kube-system:node-controller","acsService","aksService","system:serviceaccount:kube-system:cloud-node-manager"]
+    allowedGroups: ["system:node"]

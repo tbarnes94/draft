@@ -1,0 +1,59 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8srestrictedfleetedits
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRestrictedFleetEdits
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:     
+            allowedUsers:
+              type: array
+              items:
+                type: string
+            allowedGroups:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srestrictedfleetedits
+
+        is_system_account(userinfo) {
+          user := input.parameters.allowedUsers[_]
+          userinfo.username == user
+        }
+
+        is_system_account(userinfo) {
+          userGroups := {x | x = userinfo.groups[_]}
+          allowedGroups := {x | x = input.parameters.allowedGroups[_]}
+          diffList := userGroups - allowedGroups
+          count(diffList) < count(userGroups)
+        }
+
+        flatten_map(obj) = labels {
+        	keyVals := [s | s = concat(":",[key,val]); val = obj[key]]
+            keysStr := concat(",", keyVals)
+            labels := split(keysStr,",")
+        }
+
+        is_update_or_delete(operation) {
+          operation == "DELETE"
+        }
+
+        is_update_or_delete(operation) {
+          operation == "UPDATE"
+        }
+
+        violation[{"msg": msg}] {
+          providedLabel := flatten_map(input.review.object.metadata.labels)[_]
+          re_match("kubernetes.azure.com/managed-by:fleet",providedLabel)
+          not is_system_account(input.review.userInfo)
+          is_update_or_delete(input.review.operation)
+          msg := sprintf("%s operation is not allowed for %s object",[input.review.operation, input.review.object.metadata.name])
+        }

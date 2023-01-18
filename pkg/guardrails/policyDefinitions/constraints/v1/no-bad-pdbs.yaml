@@ -1,0 +1,12 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPDBRestrictions
+metadata:
+  name: pod-distruption-budget
+spec:
+  enforcementAction: warn
+  match:
+    kinds:
+      - apiGroups: ["apps"]
+        kinds: ["Deployment", "ReplicaSet", "StatefulSet"]
+      - apiGroups: ["policy"]
+        kinds: ["PodDisruptionBudget"]

@@ -1,0 +1,10 @@
+filegroup(
+    name = "policyDefinitions-tar-files",
+    srcs = glob(
+        [
+            "**/*",
+        ],
+        exclude = ["BUILD.bazel"],
+    ),
+    visibility = ["//visibility:public"],
+)

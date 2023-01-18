@@ -1,0 +1,154 @@
+{
+  "properties": {
+    "policyType": "Custom",
+    "mode": "Microsoft.Kubernetes.Data",
+    "displayName": "[AKS Guardrails] No AKS Specific Labels",
+    "description": "Prevents customers from applying AKS specific labels",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": [
+          "Microsoft.ContainerService/managedClusters"
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "templateInfo": {
+            "sourceType": "Base64Encoded",
+            "content": "YXBpVmVyc2lvbjogdGVtcGxhdGVzLmdhdGVrZWVwZXIuc2gvdjFiZXRhMQpraW5kOiBDb25zdHJhaW50VGVtcGxhdGUKbWV0YWRhdGE6CiAgbmFtZTogazhzcmVzdHJpY3RlZGxhYmVscwogIGFubm90YXRpb25zOgogICAgZGVzY3JpcHRpb246IFByZXZlbnRzIGN1c3RvbWVycyBmcm9tIGFwcGx5aW5nIEFLUyBzcGVjaWZpYyBsYWJlbHMKc3BlYzoKICBjcmQ6CiAgICBzcGVjOgogICAgICBuYW1lczoKICAgICAgICBraW5kOiBLOHNSZXN0cmljdGVkTGFiZWxzCiAgICAgIHZhbGlkYXRpb246CiAgICAgICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBsYWJlbHM6CiAgICAgICAgICAgICAgdHlwZTogYXJyYXkKICAgICAgICAgICAgICBpdGVtczoKICAgICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBhbGxvd2VkVXNlcnM6CiAgICAgICAgICAgICAgdHlwZTogYXJyYXkKICAgICAgICAgICAgICBpdGVtczoKICAgICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBhbGxvd2VkR3JvdXBzOgogICAgICAgICAgICAgIHR5cGU6IGFycmF5CiAgICAgICAgICAgICAgaXRlbXM6CiAgICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICB0YXJnZXRzOgogICAgLSB0YXJnZXQ6IGFkbWlzc2lvbi5rOHMuZ2F0ZWtlZXBlci5zaAogICAgICByZWdvOiB8CiAgICAgICAgcGFja2FnZSBrOHNyZXN0cmljdGVkbGFiZWxzCgogICAgICAgIGlzX3N5c3RlbV9hY2NvdW50KHVzZXJpbmZvKSB7CiAgICAgICAgICB1c2VyIDo9IGlucHV0LnBhcmFtZXRlcnMuYWxsb3dlZFVzZXJzW19dCiAgICAgICAgICB1c2VyaW5mby51c2VybmFtZSA9PSB1c2VyCiAgICAgICAgfQoKICAgICAgICBpc19zeXN0ZW1fYWNjb3VudCh1c2VyaW5mbykgewogICAgICAgICAgdXNlckdyb3VwcyA6PSB7eCB8IHggPSB1c2VyaW5mby5ncm91cHNbX119CiAgICAgICAgICBhbGxvd2VkR3JvdXBzIDo9IHt4IHwgeCA9IGlucHV0LnBhcmFtZXRlcnMuYWxsb3dlZEdyb3Vwc1tfXX0KICAgICAgICAgIGRpZmZMaXN0IDo9IHVzZXJHcm91cHMgLSBhbGxvd2VkR3JvdXBzCiAgICAgICAgICBjb3VudChkaWZmTGlzdCkgPCBjb3VudCh1c2VyR3JvdXBzKQogICAgICAgIH0KCiAgICAgICAgZmxhdHRlbl9tYXAob2JqKSA9IGxhYmVscyB7CiAgICAgICAgCWtleVZhbHMgOj0gW3MgfCBzID0gY29uY2F0KCI6Iixba2V5LHZhbF0pOyB2YWwgPSBvYmpba2V5XV0KICAgICAgICAgICAga2V5c1N0ciA6PSBjb25jYXQoIiwiLCBrZXlWYWxzKQogICAgICAgICAgICBsYWJlbHMgOj0gc3BsaXQoa2V5c1N0ciwiLCIpCiAgICAgICAgfQoKICAgICAgICB2aW9sYXRpb25beyJtc2ciOiBtc2d9XSB7CiAgICAgICAgICBwcm92aWRlZExhYmVsIDo9IGZsYXR0ZW5fbWFwKGlucHV0LnJldmlldy5vYmplY3QubWV0YWRhdGEubGFiZWxzKVtfXQogICAgICAgICAgcmVzZXJ2ZWRMYWJlbCA6PSBpbnB1dC5wYXJhbWV0ZXJzLmxhYmVsc1tfXQogICAgICAgICAgcmVfbWF0Y2gocmVzZXJ2ZWRMYWJlbCxwcm92aWRlZExhYmVsKQogICAgICAgICAgbm90IGlzX3N5c3RlbV9hY2NvdW50KGlucHV0LnJldmlldy51c2VySW5mbykKICAgICAgICAgIG5vdCByZXNlcnZlZExhYmVsID09ICIiCiAgICAgICAgICBtc2cgOj0gc3ByaW50ZigiTGFiZWwgPCVzPiBpcyByZXNlcnZlZCBmb3IgQUtTIHVzZSBvbmx5IixbcmVzZXJ2ZWRMYWJlbF0pCiAgICAgICAgfQ=="
+          },
+          "apiGroups": [
+            "", "apps"
+          ],
+          "kinds": [
+            "Pod", "Node", "Service", "Deployment", "StatefulSet", "ReplicaSet"
+          ],
+          "namespaces": "[parameters('namespaces')]",
+          "excludedNamespaces": "[parameters('excludedNamespaces')]",
+          "labelSelector": "[parameters('labelSelector')]",
+          "values": {
+            "labels": "[parameters('labels')]",
+            "allowedUsers": "[parameters('allowedUsers')]",
+            "allowedGroups": "[parameters('allowedGroups')]"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Effect",
+          "description": "'audit' allows a non-compliant resource to be created or updated, but flags it as non-compliant. 'deny' blocks the non-compliant resource creation or update. 'disabled' turns off the policy."
+        },
+        "allowedValues": [
+          "audit",
+          "deny",
+          "disabled"
+        ],
+        "defaultValue": "audit"
+      },
+      "excludedNamespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace exclusions",
+          "description": "List of Kubernetes namespaces to exclude from policy evaluation."
+        },
+        "defaultValue": [
+          "kube-system",
+          "gatekeeper-system",
+          "azure-arc"
+        ]
+      },
+      "namespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace inclusions",
+          "description": "List of Kubernetes namespaces to only include in policy evaluation. An empty list means the policy is applied to all resources in all namespaces."
+        },
+        "defaultValue": []
+      },
+      "labelSelector": {
+        "type": "Object",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Kubernetes label selector",
+          "description": "Label query to select Kubernetes resources for policy evaluation. An empty label selector matches all Kubernetes resources."
+        },
+        "defaultValue": {},
+        "schema": {
+          "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all resources.",
+          "type": "object",
+          "properties": {
+            "matchLabels": {
+              "description": "matchLabels is a map of {key,value} pairs.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "minProperties": 1
+            },
+            "matchExpressions": {
+              "description": "matchExpressions is a list of values, a key, and an operator.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "key is the label key that the selector applies to.",
+                    "type": "string"
+                  },
+                  "operator": {
+                    "description": "operator represents a key's relationship to a set of values.",
+                    "type": "string",
+                    "enum": [
+                      "In",
+                      "NotIn",
+                      "Exists",
+                      "DoesNotExist"
+                    ]
+                  },
+                  "values": {
+                    "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "operator"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "labels": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] AKS Specific Labels",
+          "description": "Labels specific to AKS."
+        }
+      },
+      "allowedUsers": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Allowed Users",
+          "description": "Users that are allowed to use AKS specific labels."
+        }
+      },
+      "allowedGroups": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Allowed Groups",
+          "description": "Groups that are allowed to use AKS specific labels."
+        }
+      }
+    }
+  }
+}

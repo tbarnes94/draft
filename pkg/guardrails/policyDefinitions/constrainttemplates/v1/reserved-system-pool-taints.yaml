@@ -1,0 +1,22 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sreservedtaints
+  annotations:
+    description: Restricts the CriticalAddonsOnly taint to just the system pool
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sReservedTaints
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            reservedTaints:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: (V_REGO)

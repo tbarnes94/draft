@@ -1,0 +1,12 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sReservedTaints
+metadata:
+  name: system-reserved-taints
+spec:
+  enforcementAction: warn
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Node"]
+  parameters:
+    reservedTaints: ["CriticalAddonsOnly"]

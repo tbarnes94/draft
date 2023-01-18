@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "policyType": "Custom",
+    "mode": "Microsoft.Kubernetes.Data",
+    "displayName": "[AKS Guardrails] Cannot Edit Individual Nodes",
+    "description": "Users should not edit individual nodes. Please edit node pools.",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": [
+          "Microsoft.ContainerService/managedClusters"
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "templateInfo": {
+            "sourceType": "Base64Encoded",
+            "content": "YXBpVmVyc2lvbjogdGVtcGxhdGVzLmdhdGVrZWVwZXIuc2gvdjEKa2luZDogQ29uc3RyYWludFRlbXBsYXRlCm1ldGFkYXRhOgogIG5hbWU6IGs4c3Jlc3RyaWN0ZWRub2RlZWRpdHMKc3BlYzoKICBjcmQ6CiAgICBzcGVjOgogICAgICBuYW1lczoKICAgICAgICBraW5kOiBLOHNSZXN0cmljdGVkTm9kZUVkaXRzCiAgICAgIHZhbGlkYXRpb246CiAgICAgICAgb3BlbkFQSVYzU2NoZW1hOgogICAgICAgICAgdHlwZTogb2JqZWN0CiAgICAgICAgICBwcm9wZXJ0aWVzOgogICAgICAgICAgICBhbGxvd2VkVXNlcnM6CiAgICAgICAgICAgICAgdHlwZTogYXJyYXkKICAgICAgICAgICAgICBpdGVtczoKICAgICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBhbGxvd2VkR3JvdXBzOgogICAgICAgICAgICAgIHR5cGU6IGFycmF5CiAgICAgICAgICAgICAgaXRlbXM6CiAgICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICB0YXJnZXRzOgogICAgLSB0YXJnZXQ6IGFkbWlzc2lvbi5rOHMuZ2F0ZWtlZXBlci5zaAogICAgICByZWdvOiB8CiAgICAgICAgcGFja2FnZSBrOHNyZXN0cmljdGVkbm9kZWVkaXRzCgogICAgICAgIGlzX3N5c3RlbV9hY2NvdW50KHVzZXJpbmZvKSB7CiAgICAgICAgICB1c2VyIDo9IGlucHV0LnBhcmFtZXRlcnMuYWxsb3dlZFVzZXJzW19dCiAgICAgICAgICB1c2VyaW5mby51c2VybmFtZSA9PSB1c2VyCiAgICAgICAgfQoKICAgICAgICBpc19zeXN0ZW1fYWNjb3VudCh1c2VyaW5mbykgewogICAgICAgICAgdXNlckdyb3VwcyA6PSB7eCB8IHggPSB1c2VyaW5mby5ncm91cHNbX119CiAgICAgICAgICBhbGxvd2VkR3JvdXBzIDo9IHt4IHwgeCA9IGlucHV0LnBhcmFtZXRlcnMuYWxsb3dlZEdyb3Vwc1tfXX0KICAgICAgICAgIGRpZmZMaXN0IDo9IHVzZXJHcm91cHMgLSBhbGxvd2VkR3JvdXBzCiAgICAgICAgICBjb3VudChkaWZmTGlzdCkgPCBjb3VudCh1c2VyR3JvdXBzKQogICAgICAgIH0KCiAgICAgICAgZmxhdHRlbl9tYXAob2JqKSA9IGxhYmVscyB7CiAgICAgICAgCWtleVZhbHMgOj0gW3MgfCBzID0gY29uY2F0KCI6Iixba2V5LHZhbF0pOyB2YWwgPSBvYmpba2V5XV0KICAgICAgICAgICAgc3RyIDo9IGNvbmNhdCgiLCIsIGtleVZhbHMpCiAgICAgICAgICAgIGxhYmVscyA6PSBzcGxpdChzdHIsIiwiKQogICAgICAgIH0KCiAgICAgICAgdW5jaGFuZ2VkX3RhaW50c19vcl9sYWJlbHMobm9kZSwgb2xkTm9kZSkgewogICAgICAgICAgICB0YWludHMgOj0ge3ggfCB4ID0gZmxhdHRlbl9tYXAodGFpbnQpOyB0YWludCA9IG5vZGUuc3BlYy50YWludHNbX119CiAgICAgICAgICAgIG9sZFRhaW50cyA6PSB7eCB8IHggPSBmbGF0dGVuX21hcCh0YWludCk7IHRhaW50ID0gb2xkTm9kZS5zcGVjLnRhaW50c1tfXX0KICAgICAgICAgICAgYWRkZWRUYWludHMgOj0gdGFpbnRzIC0gb2xkVGFpbnRzCiAgICAgICAgICAgIGRlbGV0ZWRUYWludHMgOj0gb2xkVGFpbnRzIC0gdGFpbnRzCiAgICAgICAgICAgIGNvdW50KGFkZGVkVGFpbnRzKSA9PSBjb3VudChkZWxldGVkVGFpbnRzKQogICAgICAgICAgICBjb3VudChhZGRlZFRhaW50cykgPT0gMAogICAgICAgICAgICBsYWJlbHMgOj0ge3ggfCB4ID0gZmxhdHRlbl9tYXAobm9kZS5tZXRhZGF0YS5sYWJlbHMpW19dfQogICAgICAgICAgICBvbGRMYWJlbHMgOj0ge3ggfCB4ID0gZmxhdHRlbl9tYXAob2xkTm9kZS5tZXRhZGF0YS5sYWJlbHMpW19dfQogICAgICAgICAgICBhZGRlZExhYmVscyA6PSBsYWJlbHMgLSBvbGRMYWJlbHMKICAgICAgICAgICAgZGVsZXRlZExhYmVscyA6PSBvbGRMYWJlbHMgLSBsYWJlbHMKICAgICAgICAgICAgY291bnQoYWRkZWRMYWJlbHMpID09IGNvdW50KGRlbGV0ZWRMYWJlbHMpCiAgICAgICAgICAgIGNvdW50KGFkZGVkTGFiZWxzKSA9PSAwCiAgICAgICAgfQoKCiAgICAgICAgdmlvbGF0aW9uW3sibXNnIjptc2d9XXsKICAgICAgICAgIAlub3QgdW5jaGFuZ2VkX3RhaW50c19vcl9sYWJlbHMoaW5wdXQucmV2aWV3Lm9iamVjdCwgaW5wdXQucmV2aWV3Lm9sZE9iamVjdCkKICAgICAgICAJbm90IGlzX3N5c3RlbV9hY2NvdW50KGlucHV0LnJldmlldy51c2VySW5mbykKICAgICAgICAgIAltc2cgOj0gIlRhaW50aW5nIG9yIGxhYmVsbGluZyBpbmRpdmlkdWFsIG5vZGVzIGlzIG5vdCByZWNvbW1lbmRlZC4gUGxlYXNlIHVzZSBBWiBjbGkgdG8gdGFpbnQvbGFiZWwgbm9kZXBvb2xzIGluc3RlYWQiCiAgICAgICAgfQ=="
+          },
+          "apiGroups": [
+            ""
+          ],
+          "kinds": [
+            "Node"
+          ],
+          "namespaces": "[parameters('namespaces')]",
+          "excludedNamespaces": "[parameters('excludedNamespaces')]",
+          "labelSelector": "[parameters('labelSelector')]",
+          "values": {
+            "allowedUsers": "[parameters('allowedUsers')]",
+            "allowedGroups": "[parameters('allowedGroups')]"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Effect",
+          "description": "'audit' allows a non-compliant resource to be created or updated, but flags it as non-compliant. 'deny' blocks the non-compliant resource creation or update. 'disabled' turns off the policy."
+        },
+        "allowedValues": [
+          "audit",
+          "deny",
+          "disabled"
+        ],
+        "defaultValue": "audit"
+      },
+      "excludedNamespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace exclusions",
+          "description": "List of Kubernetes namespaces to exclude from policy evaluation."
+        },
+        "defaultValue": [
+          "kube-system",
+          "gatekeeper-system",
+          "azure-arc"
+        ]
+      },
+      "namespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace inclusions",
+          "description": "List of Kubernetes namespaces to only include in policy evaluation. An empty list means the policy is applied to all resources in all namespaces."
+        },
+        "defaultValue": []
+      },
+      "labelSelector": {
+        "type": "Object",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Kubernetes label selector",
+          "description": "Label query to select Kubernetes resources for policy evaluation. An empty label selector matches all Kubernetes resources."
+        },
+        "defaultValue": {},
+        "schema": {
+          "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all resources.",
+          "type": "object",
+          "properties": {
+            "matchLabels": {
+              "description": "matchLabels is a map of {key,value} pairs.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "minProperties": 1
+            },
+            "matchExpressions": {
+              "description": "matchExpressions is a list of values, a key, and an operator.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "key is the label key that the selector applies to.",
+                    "type": "string"
+                  },
+                  "operator": {
+                    "description": "operator represents a key's relationship to a set of values.",
+                    "type": "string",
+                    "enum": [
+                      "In",
+                      "NotIn",
+                      "Exists",
+                      "DoesNotExist"
+                    ]
+                  },
+                  "values": {
+                    "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "operator"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "allowedUsers": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Allowed Users",
+          "description": "Users that are allowed by AKS Guardrails to modify node labels on individual nodes."
+        }
+      },
+      "allowedGroups": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Allowed Groups",
+          "description": "Groups that are allowed by AKS Guardrails to modify node labels on individual nodes."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "properties": {
+    "policyType": "Custom",
+    "mode": "Microsoft.Kubernetes.Data",
+    "displayName": "[AKS Guardrails] Reserved System Pool Taints",
+    "description": "Restricts the CriticalAddonsOnly taint to just the system pool",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": [
+          "Microsoft.ContainerService/managedClusters"
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "templateInfo": {
+            "sourceType": "Base64Encoded",
+            "content": "YXBpVmVyc2lvbjogdGVtcGxhdGVzLmdhdGVrZWVwZXIuc2gvdjEKa2luZDogQ29uc3RyYWludFRlbXBsYXRlCm1ldGFkYXRhOgogIG5hbWU6IGs4c3Jlc2VydmVkdGFpbnRzCiAgYW5ub3RhdGlvbnM6CiAgICBkZXNjcmlwdGlvbjogUmVzdHJpY3RzIHRoZSBDcml0aWNhbEFkZG9uc09ubHkgdGFpbnQgdG8ganVzdCB0aGUgc3lzdGVtIHBvb2wKc3BlYzoKICBjcmQ6CiAgICBzcGVjOgogICAgICBuYW1lczoKICAgICAgICBraW5kOiBLOHNSZXNlcnZlZFRhaW50cwogICAgICB2YWxpZGF0aW9uOgogICAgICAgIG9wZW5BUElWM1NjaGVtYToKICAgICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgICAgcHJvcGVydGllczoKICAgICAgICAgICAgcmVzZXJ2ZWRUYWludHM6CiAgICAgICAgICAgICAgdHlwZTogYXJyYXkKICAgICAgICAgICAgICBpdGVtczoKICAgICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogIHRhcmdldHM6CiAgICAtIHRhcmdldDogYWRtaXNzaW9uLms4cy5nYXRla2VlcGVyLnNoCiAgICAgIHJlZ286IHwKICAgICAgICBwYWNrYWdlIGs4c3Jlc2VydmVkdGFpbnRzCgogICAgICAgIGlzX3N5c3RlbV9wb29sKG5vZGUpIHsKICAgICAgICAgIG5vZGUubWV0YWRhdGEubGFiZWxzWyJrdWJlcm5ldGVzLmF6dXJlLmNvbS9tb2RlIl0gPT0gInN5c3RlbSIKICAgICAgICB9CgogICAgICAgIGlzX3N5c3RlbV9wb29sKG5vZGUpIHsKICAgICAgICAgIG5vZGUubWV0YWRhdGEubGFiZWxzWyJrdWJlcm5ldGVzLmF6dXJlLmNvbS9tb2RlIl0gPT0gIlN5c3RlbSIKICAgICAgICB9CgogICAgICAgIHZpb2xhdGlvblt7Im1zZyI6IG1zZ31dIHsKICAgICAgICAgIG5vZGUgOj0gaW5wdXQucmV2aWV3Lm9iamVjdAogICAgICAgICAgIyBkaWQgdGhlIGN1c3RvbWVyIHRyeSB0byBhZGQgYSB0YWludCB3aXRoIGtleSAiQ3JpdGljYWxBZGRvbnNPbmx5IiB0byBhIG5vbi1zeXN0ZW0gcG9vbD8KICAgICAgICAgIHRhaW50cyA6PSB7eCB8IHggPSBub2RlLnNwZWMudGFpbnRzW19dLmtleX0KICAgICAgICAgIG5vdCBpc19zeXN0ZW1fcG9vbChub2RlKQogICAgICAgICAgdGFpbnQgOj0gdGFpbnRzW19dCiAgICAgICAgICByZXN0cmljdGVkVGFpbnQgOj0gaW5wdXQucGFyYW1ldGVycy5yZXNlcnZlZFRhaW50c1tfXQogICAgICAgICAgcmVfbWF0Y2gocmVzdHJpY3RlZFRhaW50LHRhaW50KQoKICAgICAgICAgIG1zZyA6PSBzcHJpbnRmKCJUYWludCB3aXRoIGtleSA8JXM+IGlzIHJlc2VydmVkIGZvciB0aGUgc3lzdGVtIHBvb2wgb25seSIsW3RhaW50XSkKICAgICAgICB9"
+          },
+          "apiGroups": [
+            ""
+          ],
+          "kinds": [
+            "Node"
+          ],
+          "namespaces": "[parameters('namespaces')]",
+          "excludedNamespaces": "[parameters('excludedNamespaces')]",
+          "labelSelector": "[parameters('labelSelector')]",
+          "values": {
+            "reservedTaints": "[parameters('reservedTaints')]"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Effect",
+          "description": "'audit' allows a non-compliant resource to be created or updated, but flags it as non-compliant. 'deny' blocks the non-compliant resource creation or update. 'disabled' turns off the policy."
+        },
+        "allowedValues": [
+          "audit",
+          "deny",
+          "disabled"
+        ],
+        "defaultValue": "audit"
+      },
+      "excludedNamespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace exclusions",
+          "description": "List of Kubernetes namespaces to exclude from policy evaluation."
+        },
+        "defaultValue": [
+          "kube-system",
+          "gatekeeper-system",
+          "azure-arc"
+        ]
+      },
+      "namespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace inclusions",
+          "description": "List of Kubernetes namespaces to only include in policy evaluation. An empty list means the policy is applied to all resources in all namespaces."
+        },
+        "defaultValue": []
+      },
+      "labelSelector": {
+        "type": "Object",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Kubernetes label selector",
+          "description": "Label query to select Kubernetes resources for policy evaluation. An empty label selector matches all Kubernetes resources."
+        },
+        "defaultValue": {},
+        "schema": {
+          "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all resources.",
+          "type": "object",
+          "properties": {
+            "matchLabels": {
+              "description": "matchLabels is a map of {key,value} pairs.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "minProperties": 1
+            },
+            "matchExpressions": {
+              "description": "matchExpressions is a list of values, a key, and an operator.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "key is the label key that the selector applies to.",
+                    "type": "string"
+                  },
+                  "operator": {
+                    "description": "operator represents a key's relationship to a set of values.",
+                    "type": "string",
+                    "enum": [
+                      "In",
+                      "NotIn",
+                      "Exists",
+                      "DoesNotExist"
+                    ]
+                  },
+                  "values": {
+                    "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "operator"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "reservedTaints": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Reserved Taints",
+          "description": "Reserved taints."
+        }
+      }
+    }
+  }
+}

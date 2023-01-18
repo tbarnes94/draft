@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "policyType": "Custom",
+    "mode": "Microsoft.Kubernetes.Data",
+    "displayName": "[AKS Guardrails] Cannot Edit Fleet Resources",
+    "description": "Users should not edit fleet resources.",
+    "policyRule": {
+      "if": {
+        "field": "type",
+        "in": [
+          "Microsoft.ContainerService/managedClusters"
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "templateInfo": {
+            "sourceType": "Base64Encoded",
+            "content": "YXBpVmVyc2lvbjogdGVtcGxhdGVzLmdhdGVrZWVwZXIuc2gvdjFiZXRhMQpraW5kOiBDb25zdHJhaW50VGVtcGxhdGUKbWV0YWRhdGE6CiAgbmFtZTogazhzcmVzdHJpY3RlZGZsZWV0ZWRpdHMKc3BlYzoKICBjcmQ6CiAgICBzcGVjOgogICAgICBuYW1lczoKICAgICAgICBraW5kOiBLOHNSZXN0cmljdGVkRmxlZXRFZGl0cwogICAgICB2YWxpZGF0aW9uOgogICAgICAgIG9wZW5BUElWM1NjaGVtYToKICAgICAgICAgIHR5cGU6IG9iamVjdAogICAgICAgICAgcHJvcGVydGllczogICAgIAogICAgICAgICAgICBhbGxvd2VkVXNlcnM6CiAgICAgICAgICAgICAgdHlwZTogYXJyYXkKICAgICAgICAgICAgICBpdGVtczoKICAgICAgICAgICAgICAgIHR5cGU6IHN0cmluZwogICAgICAgICAgICBhbGxvd2VkR3JvdXBzOgogICAgICAgICAgICAgIHR5cGU6IGFycmF5CiAgICAgICAgICAgICAgaXRlbXM6CiAgICAgICAgICAgICAgICB0eXBlOiBzdHJpbmcKICB0YXJnZXRzOgogICAgLSB0YXJnZXQ6IGFkbWlzc2lvbi5rOHMuZ2F0ZWtlZXBlci5zaAogICAgICByZWdvOiB8CiAgICAgICAgcGFja2FnZSBrOHNyZXN0cmljdGVkZmxlZXRlZGl0cwoKICAgICAgICBpc19zeXN0ZW1fYWNjb3VudCh1c2VyaW5mbykgewogICAgICAgICAgdXNlciA6PSBpbnB1dC5wYXJhbWV0ZXJzLmFsbG93ZWRVc2Vyc1tfXQogICAgICAgICAgdXNlcmluZm8udXNlcm5hbWUgPT0gdXNlcgogICAgICAgIH0KCiAgICAgICAgaXNfc3lzdGVtX2FjY291bnQodXNlcmluZm8pIHsKICAgICAgICAgIHVzZXJHcm91cHMgOj0ge3ggfCB4ID0gdXNlcmluZm8uZ3JvdXBzW19dfQogICAgICAgICAgYWxsb3dlZEdyb3VwcyA6PSB7eCB8IHggPSBpbnB1dC5wYXJhbWV0ZXJzLmFsbG93ZWRHcm91cHNbX119CiAgICAgICAgICBkaWZmTGlzdCA6PSB1c2VyR3JvdXBzIC0gYWxsb3dlZEdyb3VwcwogICAgICAgICAgY291bnQoZGlmZkxpc3QpIDwgY291bnQodXNlckdyb3VwcykKICAgICAgICB9CgogICAgICAgIGZsYXR0ZW5fbWFwKG9iaikgPSBsYWJlbHMgewogICAgICAgIAlrZXlWYWxzIDo9IFtzIHwgcyA9IGNvbmNhdCgiOiIsW2tleSx2YWxdKTsgdmFsID0gb2JqW2tleV1dCiAgICAgICAgICAgIGtleXNTdHIgOj0gY29uY2F0KCIsIiwga2V5VmFscykKICAgICAgICAgICAgbGFiZWxzIDo9IHNwbGl0KGtleXNTdHIsIiwiKQogICAgICAgIH0KCiAgICAgICAgaXNfdXBkYXRlX29yX2RlbGV0ZShvcGVyYXRpb24pIHsKICAgICAgICAgIG9wZXJhdGlvbiA9PSAiREVMRVRFIgogICAgICAgIH0KCiAgICAgICAgaXNfdXBkYXRlX29yX2RlbGV0ZShvcGVyYXRpb24pIHsKICAgICAgICAgIG9wZXJhdGlvbiA9PSAiVVBEQVRFIgogICAgICAgIH0KCiAgICAgICAgdmlvbGF0aW9uW3sibXNnIjogbXNnfV0gewogICAgICAgICAgcHJvdmlkZWRMYWJlbCA6PSBmbGF0dGVuX21hcChpbnB1dC5yZXZpZXcub2JqZWN0Lm1ldGFkYXRhLmxhYmVscylbX10KICAgICAgICAgIHJlX21hdGNoKCJrdWJlcm5ldGVzLmF6dXJlLmNvbS9tYW5hZ2VkLWJ5OmZsZWV0Iixwcm92aWRlZExhYmVsKQogICAgICAgICAgbm90IGlzX3N5c3RlbV9hY2NvdW50KGlucHV0LnJldmlldy51c2VySW5mbykKICAgICAgICAgIGlzX3VwZGF0ZV9vcl9kZWxldGUoaW5wdXQucmV2aWV3Lm9wZXJhdGlvbikKICAgICAgICAgIG1zZyA6PSBzcHJpbnRmKCIlcyBvcGVyYXRpb24gaXMgbm90IGFsbG93ZWQgZm9yICVzIG9iamVjdCIsW2lucHV0LnJldmlldy5vcGVyYXRpb24sIGlucHV0LnJldmlldy5vYmplY3QubWV0YWRhdGEubmFtZV0pCiAgICAgICAgfQ=="
+          },
+          "apiGroups": [
+            "*"
+          ],
+          "kinds": [
+            "*"
+          ],
+          "namespaces": "[parameters('namespaces')]",
+          "excludedNamespaces": "[parameters('excludedNamespaces')]",
+          "labelSelector": "[parameters('labelSelector')]",
+          "values": {
+            "allowedUsers": "[parameters('allowedUsers')]",
+            "allowedGroups": "[parameters('allowedGroups')]"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Effect",
+          "description": "'audit' allows a non-compliant resource to be created or updated, but flags it as non-compliant. 'deny' blocks the non-compliant resource creation or update. 'disabled' turns off the policy."
+        },
+        "allowedValues": [
+          "audit",
+          "deny",
+          "disabled"
+        ],
+        "defaultValue": "audit"
+      },
+      "excludedNamespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace exclusions",
+          "description": "List of Kubernetes namespaces to exclude from policy evaluation."
+        },
+        "defaultValue": [
+          "kube-system",
+          "gatekeeper-system",
+          "azure-arc"
+        ]
+      },
+      "namespaces": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Namespace inclusions",
+          "description": "List of Kubernetes namespaces to only include in policy evaluation. An empty list means the policy is applied to all resources in all namespaces."
+        },
+        "defaultValue": []
+      },
+      "labelSelector": {
+        "type": "Object",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Kubernetes label selector",
+          "description": "Label query to select Kubernetes resources for policy evaluation. An empty label selector matches all Kubernetes resources."
+        },
+        "defaultValue": {},
+        "schema": {
+          "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all resources.",
+          "type": "object",
+          "properties": {
+            "matchLabels": {
+              "description": "matchLabels is a map of {key,value} pairs.",
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "minProperties": 1
+            },
+            "matchExpressions": {
+              "description": "matchExpressions is a list of values, a key, and an operator.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "key is the label key that the selector applies to.",
+                    "type": "string"
+                  },
+                  "operator": {
+                    "description": "operator represents a key's relationship to a set of values.",
+                    "type": "string",
+                    "enum": [
+                      "In",
+                      "NotIn",
+                      "Exists",
+                      "DoesNotExist"
+                    ]
+                  },
+                  "values": {
+                    "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "operator"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "allowedUsers": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Allowed Users",
+          "description": "Users that are allowed by AKS Guardrails to modify Fleet resources."
+        }
+      },
+      "allowedGroups": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "[AKS Guardrails] Allowed Groups",
+          "description": "Groups that are allowed by AKS Guardrails to modify Fleet resources."
+        }
+      }
+    }
+  }
+}

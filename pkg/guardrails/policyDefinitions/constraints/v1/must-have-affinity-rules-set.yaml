@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAffinityRules
+metadata:
+  name: multiple-replicas-need-anti-affinity
+spec:
+  enforcementAction: warn
+  match:
+    kinds:
+      - apiGroups: ["apps"]
+        kinds: ["Deployment","StatefulSet"]

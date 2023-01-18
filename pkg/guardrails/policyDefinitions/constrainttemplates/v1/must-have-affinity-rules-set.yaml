@@ -1,0 +1,25 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8saffinityrules
+  annotations:
+    description: Requires Pods to have readiness and/or liveness probes.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sAffinityRules
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8saffinityrules
+
+        missing_affinity(obj) {
+          not obj.affinity.podAntiAffinity
+        }
+
+        violation[{"msg": msg}] {
+          input.review.object.spec.replicas > 1
+          missing_affinity(input.review.object.spec.template.spec)
+          msg := sprintf("%s with %d replicas should have pod anti-affinity rules set to avoid disruptions due to nodes crashing", [input.review.kind.kind, input.review.object.spec.replicas])
+        }
